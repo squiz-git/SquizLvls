@@ -95,10 +95,8 @@ end
 
 function LvlUp(ply)
 
-	lvl = sql.QueryValue("SELECT lvl FROM squiz_db WHERE unique_id = '"..steamID.."'")
-	lvl = lvl+1
 	ply:PrintMessage(HUD_PRINTTALK,"You've leveled up your current level is now: "..lvl)
-	ply:SetNWInt("lvl", lvl)
+	ply:SetNWInt("lvl", lvl+1)
 	saveStat(ply)
 	
     -- Leveling Effect
@@ -111,10 +109,8 @@ end
 
 function SetLvl(ply,lvlset)
 
-	lvl = sql.QueryValue("SELECT lvl FROM squiz_db WHERE unique_id = '"..steamID.."'")
-	lvl = lvlset
 	ply:PrintMessage(HUD_PRINTTALK,"You've leveled up your current level is now: "..lvl)
-	ply:SetNWInt("lvl", lvl)
+	ply:SetNWInt("lvl", lvlset)
 	saveStat(ply)
 	
     -- Leveling Effect
@@ -127,9 +123,7 @@ end
 
 function GiveXP(ply,xpearned)
 
-	xp = sql.QueryValue("SELECT xp FROM squiz_db WHERE unique_id = '"..steamID.."'")
-	xp = xp+xpearned
-	ply:SetNWInt("xp", xp)
+	ply:SetNWInt("xp", xp+xpearned)
 	CheckForRank(ply,xp)
 	saveStat(ply)
 	
