@@ -94,11 +94,11 @@ function Initialize()
 end
 
 local xpTable = {140}
-local ExpMeme = 140
+local ExpMultiplier = 140
 
 // Genlevels
 for i=2,100 do
-	ExpMeme = math.Round ( ExpMeme + math.Clamp( ExpMeme*0.4 , 0, 10000 ) )
+	ExpMultiplier = math.Round ( ExpMultiplier + math.Clamp( ExpMeme*0.4 , 0, 10000 ) )
 	xpTable[i] = ExpMeme
 end
 
@@ -108,83 +108,10 @@ function CheckLevel(ply)
 	
 	foreach level,lxp in pairs( xpTable ) do
 		
-		if xp >= lxp and < xpTable[level+1] then
+		if xp >= lxp and xp < xpTable[level+1] then
 			SetLvl(ply,level)
 		end
 	end
-end
-
-function CheckForRank(ply,xp)
-	
-	xpTable = {140,196,274,384,538,753,1054,1476,2066,2892,4049,5669,7937,11112,
-	15557,21780,30492,40492,50492,60492,70492,80492,90492,100492,110492,
-	120492,130492,140492,150492,160492,170492,180492,190492,200492,210492,
-	220492,230492,240492,250492,260492,270492,280492,290492,300492,310492,320492,
-	330492,340492,350492,360492,370492,380492,390492,400492,410492,420492,430492,
-	440492,450492,460492,470492,480492,490492,500492,510492,520492,530492,540492,
-	550492,560492,570492,580492,590492,600492,610492,620492,630492,640492,650492,
-	660492,670492,680492,690492,700492,710492,720492,730492,740492,750492,760492,
-	770492,780492,790492,800492,810492,820492,830492,840492,850492}
-	
-	xpCountUp = 1
-	if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-		end xpCountUp = xpCountUp+1
-	end
-    if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-		end xpCountUp = xpCountUp+1
-	end
-	if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-		end xpCountUp = xpCountUp+1
-	end
-	if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-		end xpCountUp = xpCountUp+1
-	end
-	if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-		end xpCountUp = xpCountUp+1
-	end
-	if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-		end xpCountUp = xpCountUp+1
-	end
-	if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-		end xpCountUp = xpCountUp+1
-	end
-	if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-		end xpCountUp = xpCountUp+1
-	end
-	
-	-- Level 10
-	
-	if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-			for k,v in pairs ( player.GetAll() ) do
-				v:PrintMessage(HUD_PRINTTALK,ply:Nick().." just reached level 10!")
-			end
-		end xpCountUp = xpCountUp+1
-	end
-	
-	if (xp >= xpTable[xpCountUp]) then 
-		if(lvl == xpCountUp) then
-			SetLvl(ply,xpCountUp+1)
-		end xpCountUp = xpCountUp+1
-	end
-	
 end
 
 function LvlUp(ply)
@@ -224,7 +151,7 @@ function GiveXP(ply,xpearned)
 	xp = sql.QueryValue("SELECT xp FROM squiz_db WHERE unique_id = '"..steamID.."'")
 	xp = xp+xpearned
 	ply:SetNWInt("xp", xp)
-	CheckForRank(ply,xp)
+	CheckLevel(ply)
 	saveStat(ply)
 	
 end
@@ -235,7 +162,7 @@ function SetXP(ply,xpset)
 	xp = xpset
 	ply:SetNWInt("xp", xp)
 	ply:PrintMessage(HUD_PRINTTALK,xpset.. " XP Set for ".. ply:Nick() .. "." )
-	CheckForRank(ply,xp)
+	--CheckLevel(ply)
 	saveStat(ply)
 	
 end
