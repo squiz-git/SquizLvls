@@ -9,7 +9,7 @@ function CheckForRank(ply,xp)
  	550492,560492,570492,580492,590492,600492,610492,620492,630492,640492,650492,
  	660492,670492,680492,690492,700492,710492,720492,730492,740492,750492,760492,
  	770492,780492,790492,800492,810492,820492,830492,840492,850492}
- 	
+	
  	xpCountUp = 1
 	
  	if (xp >= xpTable[xpCountUp]) then 
@@ -70,4 +70,70 @@ function CheckForRank(ply,xp)
  			end
  		end xpCountUp = xpCountUp+1
  	end
+	
+	if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+     if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+ 	if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+ 	if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+ 	if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+ 	if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+ 	if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+ 	if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+	if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+	-- Level 20 
+	
+	 if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 			for k,v in pairs ( player.GetAll() ) do
+ 				v:PrintMessage(HUD_PRINTTALK,ply:Nick().." just reached level "..xpCountUp+1.."!")
+ 			end
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
 end
