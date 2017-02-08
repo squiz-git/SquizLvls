@@ -93,27 +93,6 @@ function Initialize()
     tables_exist()
 end
 
-local xpTable = {140}
-local ExpMultiplier = 140
-
-// Genlevels
-for i=2,100 do
-	ExpMultiplier = math.Round ( ExpMultiplier + math.Clamp( ExpMeme*0.4 , 0, 10000 ) )
-	xpTable[i] = ExpMeme
-end
-
-function CheckLevel(ply)
-	
-	local xp = GetXP(ply)
-	
-	foreach level,lxp in pairs( xpTable ) do
-		
-		if xp >= lxp and xp < xpTable[level+1] then
-			SetLvl(ply,level)
-		end
-	end
-end
-
 function LvlUp(ply)
 
 	lvl = sql.QueryValue("SELECT lvl FROM squiz_db WHERE unique_id = '"..steamID.."'")
@@ -151,18 +130,16 @@ function GiveXP(ply,xpearned)
 	xp = sql.QueryValue("SELECT xp FROM squiz_db WHERE unique_id = '"..steamID.."'")
 	xp = xp+xpearned
 	ply:SetNWInt("xp", xp)
-	CheckLevel(ply)
+	CheckForRank(ply,xp)
 	saveStat(ply)
 	
 end
 
 function SetXP(ply,xpset)
 
-	xp = sql.QueryValue("SELECT xp FROM squiz_db WHERE unique_id = '"..steamID.."'")
-	xp = xpset
-	ply:SetNWInt("xp", xp)
+	ply:SetNWInt("xp", xpset)
 	ply:PrintMessage(HUD_PRINTTALK,xpset.. " XP Set for ".. ply:Nick() .. "." )
-	--CheckLevel(ply)
+	CheckForRank(ply,xpset)
 	saveStat(ply)
 	
 end
