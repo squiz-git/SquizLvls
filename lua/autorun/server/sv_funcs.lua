@@ -30,10 +30,10 @@ function new_player( SteamID, ply )
 	result = sql.Query( "SELECT unique_id, lvl, xp FROM squiz_db WHERE unique_id = '"..steamID.."'" )
 	   	   
 	if (result) then
- 
+	
 	   	sql.Query( "INSERT INTO squiz_db (`unique_id`, `lvl`, `xp`)VALUES ('"..steamID.."', '1', '1', '1')" )
-	   	result = sql.Query( "SELECT unique_id, lvl, xp FROM squiz_db WHERE unique_id = '"..steamID.."'" )
-	   	   	   
+	   	result = sql.Query( "SELECT unique_id, lvl, xp FROM squiz_db WHERE unique_id = '"..steamID.."'" ) 
+		
 			if (result) then
 				Msg("Player account created !\n")
 				sql_value_stats( ply )
@@ -41,9 +41,9 @@ function new_player( SteamID, ply )
 			else
 				Msg("Something went wrong with creating a players skills !\n")
 			end 
-		else
-	   	   	Msg("Something went wrong with creating a players info !\n")
-	   	end	   
+    else
+	   	Msg("Something went wrong with creating a players info !\n")
+	end	   
 end
  
 function player_exists( ply )
@@ -52,9 +52,9 @@ function player_exists( ply )
 	result = sql.Query("SELECT unique_id, lvl, xp FROM squiz_db WHERE unique_id = '"..steamID.."'")
     
     if (result) then
-	   	   	    sql_value_skills( ply ) // We will call this to retrieve the skills
-	      else
-	   	        new_player( steamID, ply ) // Create a new player :D
+	   	sql_value_skills( ply ) // We will call this to retrieve the skills
+	else
+	   	new_player( steamID, ply ) // Create a new player :D
     end
 end
  
@@ -164,6 +164,7 @@ function CheckForRank(ply,xp)
 			SetLvl(ply,xpCountUp+1)
 		end xpCountUp = xpCountUp+1
 	end
+	
 end
 
 function LvlUp(ply)
@@ -218,8 +219,3 @@ function SetXP(ply,xpset)
 	saveStat(ply)
 	
 end
-
--- Get the ole' cheeky boys.
-
-function GetLvl(ply) return lvl end
-function GetXP(ply) return xp end 
