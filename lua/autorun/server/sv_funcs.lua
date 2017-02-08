@@ -98,7 +98,7 @@ local ExpMeme = 140
 
 // Genlevels
 for i=2,100 do
-	ExpMeme = math.Round ( ExpMeme + math.Clamp( ExpMemes*0.4 , 0, 10000 ) )
+	ExpMeme = math.Round ( ExpMeme + math.Clamp( ExpMeme*0.4 , 0, 10000 ) )
 	xpTable[i] = ExpMeme
 end
 
