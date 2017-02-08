@@ -12,7 +12,15 @@ function CheckForRank(ply,xp)
 	
  	xpCountUp = 1
 	
-	-- 2 
+	-- 1 
+	
+	if (xp >= xpTable[xpCountUp]) then 
+ 		if(lvl == xpCountUp) then
+ 			SetLvl(ply,xpCountUp+1)
+ 		end xpCountUp = xpCountUp+1
+ 	end
+	
+	-- 2
 	
  	if (xp >= xpTable[xpCountUp]) then 
  		if(lvl == xpCountUp) then

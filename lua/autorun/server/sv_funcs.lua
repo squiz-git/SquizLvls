@@ -133,7 +133,16 @@ function SetXP(ply,xpset)
 
 	ply:SetNWInt("xp", xpset)
 	ply:PrintMessage(HUD_PRINTTALK,xpset.. " XP Set for ".. ply:Nick() .. "." )
-	CheckForRank(ply,xpset)
+	CheckForRank(ply,xp)
+	saveStat(ply)
+	
+end
+
+function ResetSquizLvl(ply)
+
+	ply:SetNWInt("xp", 1)
+	ply:SetNWInt("lvl", 1)
+	ply:PrintMessage(HUD_PRINTTALK, ply:Nick().." has been reset.")
 	saveStat(ply)
 	
 end
