@@ -93,6 +93,26 @@ function Initialize()
     tables_exist()
 end
 
+local xpTable = {140}
+local ExpMeme = 140
+
+// Genlevels
+for i=2,100 do
+	ExpMeme = math.Round ( ExpMeme + math.Clamp( ExpMemes*0.4 , 0, 10000 ) )
+	xpTable[i] = ExpMeme
+end
+
+function CheckLevel(ply)
+	
+	local xp = GetXP(ply)
+	
+	foreach level,lxp in pairs( xpTable ) do
+		
+		if xp >= lxp and < xpTable[level+1] then
+			SetLvl(ply,level)
+		end
+	end
+end
 
 function CheckForRank(ply,xp)
 	
